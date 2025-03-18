@@ -34,6 +34,7 @@ const LoginPage = () => {
       /* Get data after fetching */
       const loggedIn = await response.json();
       localStorage.setItem("token", loggedIn.token);
+      localStorage.setItem("role" , loggedIn.role); 
 
       if (loggedIn) {
         dispatch(
@@ -42,9 +43,8 @@ const LoginPage = () => {
             token: loggedIn.token,
           })
         );
-
-        if (loggedIn.user.role === "host") {
-          navigate("/create-listing");
+        if (loggedIn.role === "host") {
+          navigate(`/properties/${loggedIn.user._id}`);
         } else {
           navigate("/");
         }
