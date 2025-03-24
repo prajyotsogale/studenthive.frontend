@@ -11,9 +11,14 @@ export function useCreateBooking() {
             body: JSON.stringify(bookingForm)
           })
     
-    
-          if (response.ok) {
-            return { status: true , response }
+          console.log(response)
+
+          if(response.ok) {
+            console.log(response.ok) ;
+            return { status: true }
+          }else{
+            console.log(response.ok) ;
+            return { status: false}
           }
         } catch (err) {
           console.log("Submit Booking Failed.", err.message)
