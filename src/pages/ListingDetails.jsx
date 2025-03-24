@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/ListingDetails.scss";
+
 import { addMonths } from "date-fns"; // ✅ Import fixed
 import { useNavigate, useParams } from "react-router-dom";
 import "react-date-range/dist/styles.css";
@@ -77,7 +78,7 @@ const ListingDetails = () => {
   const handleSelect = (ranges) => {
     let start = new Date(ranges.selection.startDate);
     let end = addMonths(start, months); // ✅ Use `addMonths` instead of manual `.setMonth()`
-    // let end = addMonths(start, months); // ✅ Use addMonths instead of manual .setMonth()
+
 
     // ✅ Prevent booking overlap with booked dates
     for (let range of bookedDateRanges) {
