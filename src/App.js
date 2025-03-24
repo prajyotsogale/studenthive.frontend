@@ -13,6 +13,7 @@ import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
 import PaymentGateway from "./pages/PaymentGateway";
 import RazorpayGateway from "./pages/RazorpayGateway";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/payment" element={<PaymentGateway />} />
+        
+          <Route path="/c" element={<Checkout/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/properties/:listingId" element={<ListingDetails />} />
