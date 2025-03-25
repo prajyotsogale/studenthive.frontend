@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 function RazorpayGateway() {
+  const price = localStorage.getItem("price") ;
+
   function loadScript(src) {
     return new Promise((resolve) => {
       const script = document.createElement('script');
@@ -26,7 +28,9 @@ function RazorpayGateway() {
       return;
     }
 
-    const result = await axios.post('http://localhost:3001/bookings/create-order');
+    const result = await axios.post('https://studenthive.onrender.com/bookings/create-order' , {
+      amount : price ,
+    });
 
     if (!result) {
       alert('Server error. Are you online?');
@@ -51,7 +55,7 @@ function RazorpayGateway() {
           razorpaySignature: response.razorpay_signature,
         };
 
-        const result = await axios.post('http://localhost:3001/bookings/success', data);
+        const result = await axios.post('https://studenthive.onrender.com/bookings/success', data);
 
         alert(result.data.msg);
       },
@@ -72,13 +76,14 @@ function RazorpayGateway() {
     paymentObject.open();
   }
 
+
   return (
     <div className='App'>
       <header className='App-header'>
         <img src="" className='App-logo' alt='logo' />
         <p>Buy React now!</p>
         <button className='App-link' onClick={displayRazorpay}>
-          Pay 1
+          {price} Pay 
         </button>
       </header>
     </div>

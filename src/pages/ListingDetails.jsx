@@ -24,7 +24,7 @@ const ListingDetails = () => {
 
   // ✅ Default stay duration in months
   const [months, setMonths] = useState(1);
-
+  localStorage.setItem("months" , months);
   // ✅ Store booked date ranges from API
   const [bookedDateRanges, setBookedDateRanges] = useState([]);
 
@@ -42,7 +42,7 @@ const ListingDetails = () => {
     const fetchBooking = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/bookings/getbookings/${listingId}`,
+          `https://studenthive.onrender.com/bookings/getbookings/${listingId}`,
           {
             method: "GET",
             headers: {
@@ -101,28 +101,13 @@ const ListingDetails = () => {
   const totalPrice = listing?.price ? listing.price * months : 0;
 
   // ✅ Handle booking submission
-  const handleSubmit = async () => {
-    if (!customerId || !listing?.creator?._id) {
-      alert("Missing customer or host information.");
-      return;
-    }
-
-    const bookingForm = {
-      customerId,
-      listingId,
-      hostId: listing.creator._id,
-      startDate: dateRange[0].startDate.toDateString(),
-      endDate: dateRange[0].endDate.toDateString(),
-      totalPrice,
-    };
-
-    const result = await createBooking(bookingForm);
-    if (result?.status) {
-      navigate("/raz");
-    } else {
-      alert("Booking failed");
-    }
+  console.log(listingId) ;
+const handleSubmit = async () => {
+    navigate(`/c/${listingId}`);
   };
+
+  localStorage.setItem("startDate" ,  dateRange[0].startDate.toDateString())
+  localStorage.setItem("endDate" ,  dateRange[0].endDate.toDateString())
 
   return loading ? (
     <Loader />

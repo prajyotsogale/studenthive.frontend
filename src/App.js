@@ -27,7 +27,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/payment" element={<PaymentGateway />} />
         
-          <Route path="/c" element={<Checkout/>} />
+          <Route path="/c/:id" element={<Checkout/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/properties/:listingId" element={<ListingDetails />} />
